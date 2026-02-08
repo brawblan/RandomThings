@@ -1,0 +1,31 @@
+@RandomThings_HostAddress = http://localhost:5029/api
+
+GET {{RandomThings_HostAddress}}/numbers
+Accept: application/json
+
+###
+
+GET {{RandomThings_HostAddress}}/colors
+Accept: application/json
+
+###
+
+GET {{RandomThings_HostAddress}}/colors/random
+Accept: application/json
+
+###
+
+GET {{RandomThings_HostAddress}}/colors/0
+Accept: application/json
+
+###
+
+Post {{RandomThings_HostAddress}}/colors
+Content-Type: application/json
+Accept: application/json
+
+{
+  "name": "Chartruse"
+}
+
+###
