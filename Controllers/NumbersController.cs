@@ -1,10 +1,9 @@
 using RandomThings.Services;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace RandomThings.Controllers;
 
-[Route("api/[controller]")]
+[Route("[controller]")]
 [ApiController]
 public class NumbersController : ControllerBase
 {

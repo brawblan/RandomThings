@@ -1,6 +1,5 @@
-using Microsoft.AspNetCore.OpenApi;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.DependencyInjection;
+using RandomThings.Data;
 
 // Add services to the container.
 var builder = WebApplication.CreateBuilder(args);
@@ -11,15 +10,13 @@ builder.Services.AddOpenApiDocument();
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment())
+// There is no database so it's okay to have all endpionts available via swagger.
+app.UseOpenApi();
+app.UseSwaggerUi(options =>
 {
-    app.UseOpenApi();
-    app.UseSwaggerUi(options =>
-    {
-        options.DocumentPath = "/swagger/v1/swagger.json";
-    });
-}
+    options.DocumentPath = "/swagger/v1/swagger.json";
+    options.Path = "";
+});
 
 // Middleware
 app.UseHttpsRedirection();
