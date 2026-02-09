@@ -1,7 +1,7 @@
 # RandomThings
 
 ![.NET](https://github.com/brawblan/RandomThings/actions/workflows/dotnet.yml/badge.svg)
-![Azure Deploy](https://github.com/brawblan/RandomThings/actions/workflows/main_randomthingsapieus.yml/badge.svg)
+[![Render](https://img.shields.io/badge/Render-46E3B7?style=for-the-badge&logo=render&logoColor=white)](https://render.com/)
 ![Live](https://img.shields.io/badge/status-live-success)
 
 A C#/.NET web API that provides random data through RESTful endpoints. This project showcases practical ASP.NET Core development skills, including RESTful endpoint design, service layer architecture, Entity Framework Core integration, and automated deployment pipelines. Live on Azure with a custom domain, demonstrating end-to-end cloud deployment capabilities.
