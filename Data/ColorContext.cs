@@ -1,16 +1,8 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
-using RandomThings.Models;
 
-    public class ColorContext : DbContext
-    {
-        public ColorContext (DbContextOptions<ColorContext> options)
-            : base(options)
-        {
-        }
+namespace RandomThings.Data;
 
-        public DbSet<RandomThings.Models.Color> Color { get; set; } = default!;
-    }
+public class ColorContext(DbContextOptions<ColorContext> options) : DbContext(options)
+{
+    public DbSet<Models.Color> Color { get; set; } = default!;
+}

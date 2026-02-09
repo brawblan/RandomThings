@@ -18,31 +18,31 @@ Try it out directly in your browser or with any HTTP client!
 
 Get random colors or browse the color collection.
 
-- **GET** `/api/colors` - Returns all available colors
-  - Example: https://randomthings.brandonblankenste.in/api/colors
+- **GET** `/colors` - Returns all available colors
+  - Example: https://randomthings.brandonblankenste.in/colors
   - Response: `[{"id": 1, "name": "Red"}, {"id": 2, "name": "Blue"}, ...]`
 
-- **GET** `/api/colors/random` - Returns a random color
-  - Example: https://randomthings.brandonblankenste.in/api/colors/random
+- **GET** `/colors/random` - Returns a random color
+  - Example: https://randomthings.brandonblankenste.in/colors/random
   - Response: `{"id": 3, "name": "Yellow"}`
 
-- **GET** `/api/colors/{id}` - Returns a specific color by ID
-  - Example: https://randomthings.brandonblankenste.in/api/colors/1
+- **GET** `/colors/{id}` - Returns a specific color by ID
+  - Example: https://randomthings.brandonblankenste.in/colors/1
   - Response: `{"id": 1, "name": "Red"}`
 
 ### Numbers
 
 Generate random numbers on demand.
 
-- **GET** `/api/numbers` - Returns a random number between 0 and 100
-  - Example: https://randomthings.brandonblankenste.in/api/numbers
+- **GET** `/numbers` - Returns a random number between 0 and 100
+  - Example: https://randomthings.brandonblankenste.in/numbers
   - Response: `42`
 
 ## Local Development
 
 When running locally, additional endpoints are available:
 
-- **POST** `/api/colors` - Create new colors (accepts JSON body with `name` property)
+- **POST** `/colors` - Create new colors (accepts JSON body with `name` property)
 - **Swagger UI** - Interactive API documentation at `https://localhost:7103/swagger`
 
 To run locally:

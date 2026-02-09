@@ -1,28 +1,22 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 using RandomThings.Models;
 using RandomThings.Services;
 
 namespace RandomThings.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("[controller]")]
     [ApiController]
     public class ColorsController : ControllerBase
     {
-        // GET: api/Colors
+        // GET: Colors
         [HttpGet]
         public ActionResult<List<Color>> GetColors() => ColorsService.GetAll();
 
-        // GET: api/Colors/Random
+        // GET: Colors/Random
         [HttpGet("random")]
         public ActionResult<Color> GetColor() => ColorsService.GetRandom();
 
-        // GET: api/Colors/5
+        // GET: Colors/5
         [HttpGet("{id}")]
         public ActionResult<Color> Get(int id)
         {
@@ -34,7 +28,7 @@ namespace RandomThings.Controllers
             return color;
         }
 
-        // // PUT: api/Colors/5
+        // // PUT: Colors/5
         // // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         // [HttpPut("{id}")]
         // public async Task<IActionResult> PutColor(int id, Color color)
@@ -65,16 +59,19 @@ namespace RandomThings.Controllers
         //     return NoContent();
         // }
 
-        // POST: api/Colors
+        // POST: Colors
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
-        public IActionResult Create(Color color)
+        public IActionResult Create(string name)
         {
-            Color newColor = ColorsService.Add(color.Name);
+            if (name == null)
+                throw new ArgumentNullException($"Name: {name} cannot be null.");
+
+            Color newColor = ColorsService.Add(name);
             return CreatedAtAction(nameof(Get), new { id = newColor.Id }, newColor);
         }
 
-        // // DELETE: api/Colors/5
+        // // DELETE: Colors/5
         // [HttpDelete("{id}")]
         // public async Task<IActionResult> DeleteColor(int id)
         // {
