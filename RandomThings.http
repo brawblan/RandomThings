@@ -1,4 +1,4 @@
-@RandomThings_HostAddress = http://localhost:5029/api
+@RandomThings_HostAddress = http://localhost:5029
 
 GET {{RandomThings_HostAddress}}/numbers
 Accept: application/json
@@ -15,7 +15,7 @@ Accept: application/json
 
 ###
 
-GET {{RandomThings_HostAddress}}/colors/0
+GET {{RandomThings_HostAddress}}/colors/1
 Accept: application/json
 
 ###
