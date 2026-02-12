@@ -21,7 +21,7 @@ public static class ColorsService
 
     public static List<Color> GetAll() => Colors;
 
-    public static Color? Get(int id)
+    public static Color Get(int id)
     {
         Color color = Colors.FirstOrDefault(p => p.Id == id) ??
             throw new ArgumentOutOfRangeException($"ID: {id} does not exist. Enter a new ID or add this color.");
@@ -36,7 +36,7 @@ public static class ColorsService
         return color;
     }
 
-    public static Color Add(string name)
+    public static Color Create(string name)
     {
         if (Colors.FirstOrDefault(p => p.Name == name) is not null)
             throw new ArgumentException("This color already exists. Please add a different color.");
@@ -46,21 +46,22 @@ public static class ColorsService
         return newColor;
     }
 
-    // public static void Delete(int id)
-    // {
-    //     var pizza = Get(id);
-    //     if (pizza is null)
-    //         return;
+    public static Color Update(Color color, string newName)
+    {
+        var index = Colors.FindIndex(c => c.Name == color.Name);
+        if (index == -1)
+            throw new ArgumentNullException($"Color {color.Name} does not exist.");
 
-    //     Colors.Remove(pizza);
-    // }
+        Colors[index].Name = newName;
+        return color;
+    }
 
-    // public static void Update(Color pizza)
-    // {
-    //     var index = Colors.FindIndex(p => p.Id == pizza.Id);
-    //     if (index == -1)
-    //         return;
+    public static void Delete(int id)
+    {
+        var color = Get(id);
+        if (color is null)
+            return;
 
-    //     Colors[index] = pizza;
-    // }
+        Colors.Remove(color);
+    }
 }

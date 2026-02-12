@@ -15,17 +15,33 @@ Accept: application/json
 
 ###
 
-GET {{RandomThings_HostAddress}}/colors/1
+GET {{RandomThings_HostAddress}}/colors/6
 Accept: application/json
 
 ###
 
-Post {{RandomThings_HostAddress}}/colors
+POST  {{RandomThings_HostAddress}}/colors
 Content-Type: application/json
 Accept: application/json
 
 {
   "name": "Chartruse"
 }
+
+###
+
+PUT  {{RandomThings_HostAddress}}/colors/6
+Content-Type: application/json
+Accept: application/json
+
+{
+  "name": "Maroon"
+}
+
+###
+
+DELETE   {{RandomThings_HostAddress}}/colors/6
+Content-Type: application/json
+Accept: application/json
 
 ###
