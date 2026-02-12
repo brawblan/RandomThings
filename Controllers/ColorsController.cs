@@ -10,11 +10,11 @@ namespace RandomThings.Controllers
     {
         // GET: Colors
         [HttpGet]
-        public ActionResult<List<Color>> GetColors() => ColorsService.GetAll();
+        public ActionResult<List<Color>> GetAll() => ColorsService.GetAll();
 
         // GET: Colors/Random
         [HttpGet("random")]
-        public ActionResult<Color> GetColor() => ColorsService.GetRandom();
+        public ActionResult<Color> GetRandom() => ColorsService.GetRandom();
 
         // GET: Colors/5
         [HttpGet("{id}")]
@@ -28,68 +28,48 @@ namespace RandomThings.Controllers
             return color;
         }
 
-        // // PUT: Colors/5
-        // // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        // [HttpPut("{id}")]
-        // public async Task<IActionResult> PutColor(int id, Color color)
-        // {
-        //     if (id != color.Id)
-        //     {
-        //         return BadRequest();
-        //     }
-
-        //     _context.Entry(color).State = EntityState.Modified;
-
-        //     try
-        //     {
-        //         await _context.SaveChangesAsync();
-        //     }
-        //     catch (DbUpdateConcurrencyException)
-        //     {
-        //         if (!ColorExists(id))
-        //         {
-        //             return NotFound();
-        //         }
-        //         else
-        //         {
-        //             throw;
-        //         }
-        //     }
-
-        //     return NoContent();
-        // }
-
         // POST: Colors
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
-        public IActionResult Create(string name)
+        public IActionResult Create([FromBody] CreateColorRequest request)
         {
+            string name = request.Name;
             if (name == null)
                 throw new ArgumentNullException($"Name: {name} cannot be null.");
 
-            Color newColor = ColorsService.Add(name);
+            Color newColor = ColorsService.Create(name);
             return CreatedAtAction(nameof(Get), new { id = newColor.Id }, newColor);
         }
 
+        // // PUT: Colors/5
+        // // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
+        [HttpPut("{id}")]
+        public IActionResult Update(int id, [FromBody] CreateColorRequest request)
+        {
+            string name = request.Name;
+            if (name == null)
+                throw new ArgumentNullException($"Name: {name} cannot be null.");
+
+            var color = ColorsService.Get(id);
+            if (color is null)
+                return NotFound();
+
+            ColorsService.Update(color, name);
+            return NoContent();
+        }
+
         // // DELETE: Colors/5
-        // [HttpDelete("{id}")]
-        // public async Task<IActionResult> DeleteColor(int id)
-        // {
-        //     var color = await _context.Color.FindAsync(id);
-        //     if (color == null)
-        //     {
-        //         return NotFound();
-        //     }
+        [HttpDelete("{id}")]
+        public IActionResult Delete(int id)
+        {
+            var color = ColorsService.Get(id);
 
-        //     _context.Color.Remove(color);
-        //     await _context.SaveChangesAsync();
+            if (color is null)
+                return NotFound();
 
-        //     return NoContent();
-        // }
+            ColorsService.Delete(id);
 
-        // private bool ColorExists(int id)
-        // {
-        //     return _context.Color.Any(e => e.Id == id);
-        // }
+            return NoContent();
+        }
     }
 }
